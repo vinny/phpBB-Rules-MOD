@@ -1,0 +1,31 @@
+<!-- INCLUDE overall_header.html -->
+
+<h2>{L_RULES}</h2>
+
+<!-- IF not .rules -->
+<br />
+<p><strong>{L_NO_RULES}</strong></p>
+<!-- ENDIF -->
+
+<!-- BEGIN rules -->
+<div class="panel" style="background-color: transparent;">
+    <div class="inner"><span class="corners-top"><span></span></span>
+        <div class="content">
+            <ol class="headers">
+				<li><h3>{rules.TITLE}</h3>
+                    <ol class="rulespage">
+                        <li id="rule{rules.ID}">{rules.CONTENT}<a href="#rule{rules.ID}" onclick="highlight('rule{rules.ID}');"> <span style="text-decoration: underline;">#</span></a></li>
+                    </ol>
+                </li>
+            </ol>
+        </div>
+    <span class="corners-bottom"><span></span></span></div>
+</div>
+
+	<br />
+	
+	<hr class="dashed" />
+
+<!-- END rules -->
+
+<!-- INCLUDE overall_footer.html -->

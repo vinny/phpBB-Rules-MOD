@@ -1,0 +1,9 @@
+phpBB Rules MOD
+PHP Version: 5.3.0
+DBMS: MySQL 5.1.37-community-log
+phpBB3 Version: 3.0.8
+
+Adding a new database table: phpbb_rules
+SQL ERROR Você tem um erro de sintaxe no seu SQL próximo a ')
+) CHARACTER SET utf8 COLLATE utf8_bin' na linha 7
+

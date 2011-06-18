@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[phpBB Rules MOD]]></title>
+		<description lang="en"><![CDATA[Adds a rule page to your board.]]></description>
+		<author-notes lang="en"><![CDATA[This is a development version, please do not risk the operation of your forum installing this modification, use it only for testing.]]></author-notes>
+		<author-group>
+			<author>
+				<realname><![CDATA[Marcus Vinicius]]></realname>
+				<username><![CDATA[_Vinny_]]></username>
+				<homepage><![CDATA[http://www.suportephpbb.com.br/]]></homepage>
+				<email><![CDATA[vinny@suportephpbb.com.br]]></email>
+			</author>
+		</author-group>
+		<mod-version>0.0.1</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.9</target-version>
+		</installation>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/rules.php" to="rules.php"/>
+			<file from="root/install_rules.php" to="install_rules.php"/>
+			<file from="root/adm/style/acp_rules.html" to="adm/style/acp_rules.html"/>
+			<file from="root/includes/acp/acp_rules.php" to="includes/acp/acp_rules.php"/>
+			<file from="root/includes/acp/info/acp_rules.php" to="includes/acp/info/acp_rules.php"/>
+			<file from="root/language/en/mods/rules.php" to="language/en/mods/rules.php"/>
+			<file from="root/styles/prosilver/template/rules_body.html" to="styles/prosilver/template/rules_body.html"/>
+			<file from="root/styles/prosilver/theme/rules.css" to="styles/prosilver/theme/rules.css"/>
+			<file from="root/umil/" to="umil/"/>
+		</copy>
+		<open src="includes/constants.php">
+			<edit>
+				<find><![CDATA[// Additional tables]]></find>
+				<action type="after-add"><![CDATA[define('RULES_TABLE',				$table_prefix . 'rules');]]></action>
+			</edit>
+		</open>
+		<open src="includes/functions.php">
+			<edit>
+				<find><![CDATA[		'U_PROFILE'				=> append_sid("{$phpbb_root_path}ucp.$phpEx"),]]></find>
+				<action type="after-add"><![CDATA['U_RULES'				=> append_sid("{$phpbb_root_path}rules.$phpEx"),]]></action>
+			</edit>
+		</open>
+		<open src="language/en/common.php">
+			<edit>
+				<find><![CDATA[));]]></find>
+				<action type="before-add"><![CDATA[	//phpBB Rules MOD
+	'RULES'			=> 'Rules',
+	//phpBB Rules MOD]]></action>
+			</edit>
+		</open>
+		<open src="language/en/acp/common.php">
+			<edit>
+				<find><![CDATA[));
+
+?>]]></find>
+				<action type="before-add"><![CDATA[	//phpBB Rules MOD
+	'ACP_RULES_OVERVIEW'	=> 'phpBB Rules MOD',
+	'ACP_RULES_CONFIG'		=> 'Rules Settings',
+	//phpBB Rules MOD]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/overall_footer.html">
+			<edit>
+				<find><![CDATA[<!-- IF U_TEAM --><a href="{U_TEAM}">{L_THE_TEAM}</a>]]></find>
+				<action type="replace-with"><![CDATA[<a href="{U_RULES}" title="{L_RULES}">{L_RULES}</a> &bull; <!-- IF U_TEAM --><a href="{U_TEAM}">{L_THE_TEAM}</a>]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/template/overall_header.html">
+			<edit>
+				<find><![CDATA[<script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
+				<action type="after-add"><![CDATA[<!-- IF SCRIPT_NAME eq 'rules' -->
+<script type="text/javascript">
+// ]]>&lt;![CDATA[<![CDATA[
+/**
+* phpBB Rules MOD
+* Script Original Author: t_backoff (Tabitha Backoff)
+* phpBB.com Profile: http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=1003885
+* Original Page: http://www.phpbb.com/kb/article/how-to-create-a-rules-page-similar-to-phpbbcom
+**/
+
+window.onload = function()
+{
+    var pos = location.href.indexOf("#");
+    if(pos != -1)
+    {
+        highlight(location.href.slice(pos + 1));
+    }
+};
+var oldID = false;
+function highlight(id)
+{
+    if(oldID != false && oldID != id)
+    {
+        document.getElementById(oldID).className = '';
+    }
+    document.getElementById(id).className = 'activerule';
+    oldID = id;
+}
+// ]]>]]&gt;<![CDATA[
+</script>
+<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/prosilver/theme/stylesheet.css">
+			<edit>
+				<find><![CDATA[@import url("colours.css");]]></find>
+				<action type="after-add"><![CDATA[@import url("rules.css");]]></action>
+			</edit>
+		</open>
+		<php-installer><![CDATA[install_rules.php]]></php-installer>
+		<diy-instructions lang="en"><![CDATA[• Make all the changes above;
+• Run the installation file install_rules.php;
+* Delete the file install_rules.php;
+* Remove the cache and refresh the theme and template of style;
+* Go to the ACP > tab MODs > and set your rules.]]></diy-instructions>
+	</action-group>
+</mod>
