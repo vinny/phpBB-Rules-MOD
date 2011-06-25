@@ -17,7 +17,7 @@
 				<email><![CDATA[vinny@suportephpbb.com.br]]></email>
 			</author>
 		</author-group>
-		<mod-version>0.0.1</mod-version>
+		<mod-version>0.0.2</mod-version>
 		<installation>
 			<level>easy</level>
 			<time>300</time>
@@ -36,6 +36,19 @@
 			<file from="root/styles/prosilver/theme/rules.css" to="styles/prosilver/theme/rules.css"/>
 			<file from="root/umil/" to="umil/"/>
 		</copy>
+		<open src="viewonline.php">
+			<edit>
+				<find><![CDATA[		case 'report':
+			$location = $user->lang['REPORTING_POST'];
+			$location_url = append_sid("{$phpbb_root_path}index.$phpEx");
+		break;]]></find>
+				<action type="after-add"><![CDATA[
+		case 'rules':
+			$location = $user->lang['RULES'];
+			$location_url = append_sid("{$phpbb_root_path}rules.$phpEx");
+		break;]]></action>
+			</edit>
+		</open>
 		<open src="includes/constants.php">
 			<edit>
 				<find><![CDATA[// Additional tables]]></find>
