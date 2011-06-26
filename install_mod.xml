@@ -82,8 +82,11 @@
 		</open>
 		<open src="styles/prosilver/template/overall_footer.html">
 			<edit>
-				<find><![CDATA[<!-- IF U_TEAM --><a href="{U_TEAM}">{L_THE_TEAM}</a>]]></find>
-				<action type="replace-with"><![CDATA[<a href="{U_RULES}" title="{L_RULES}">{L_RULES}</a> &bull; <!-- IF U_TEAM --><a href="{U_TEAM}">{L_THE_TEAM}</a>]]></action>
+				<find><![CDATA[			<li class="rightside"><!-- IF U_TEAM --><a href="{U_TEAM}">{L_THE_TEAM}</a> &bull; <!-- ENDIF -->]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[<!-- IF U_TEAM --><a href="{U_TEAM}">]]></inline-find>
+					<inline-action type="before-add"><![CDATA[<a href="{U_RULES}" title="{L_RULES}">{L_RULES}</a> &bull;]]></inline-action>
+				</inline-edit>
 			</edit>
 		</open>
 		<open src="styles/prosilver/template/overall_header.html">
