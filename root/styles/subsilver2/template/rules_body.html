@@ -1,0 +1,30 @@
+<!-- INCLUDE overall_header.html -->
+
+<h2>{L_RULES}</h2>
+
+<!-- IF not .rules -->
+<br />
+<p><strong>{NO_RULES}</strong></p>
+<!-- ENDIF -->
+
+<!-- BEGIN rules -->
+		<table class="tablebg" width="100%" cellspacing="1">
+		<tr> 
+			<td class="cat" align="center"><h4>{rules.TITLE}</h4></td>
+		</tr>
+		<tr>
+			<td class="row1" valign="top">
+				<div id="rule{rules.ID}">
+					<div class="postbody">{rules.CONTENT} <a href="#rule{rules.ID}" onclick="highlight('rule{rules.ID}');"> <span style="text-decoration: underline;">#</span></a></div>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td class="spacer" height="1"><img src="images/spacer.gif" alt="" width="1" height="1" /></td>
+		</tr>
+		</table>
+
+		<br clear="all" />
+<!-- END rules -->
+
+<!-- INCLUDE overall_footer.html -->

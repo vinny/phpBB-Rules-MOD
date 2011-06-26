@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml-stylesheet type="text/xsl" href="modx.prosilver.en.xsl"?>
+<!--NOTICE: Please open this file in your web browser. If presented with a security warning, you may safely tell it to allow the blocked content.-->
+<!--For security purposes, please check: http://www.phpbb.com/mods/ for the latest version of this MOD.\nAlthough MODs are checked before being allowed in the MODs Database there is no guarantee that there are no security problems within the MOD.\nNo support will be given for MODs not found within the MODs Database which can be found at http://www.phpbb.com/mods/-->
+<mod xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.phpbb.com/mods/xml/modx-1.2.5.xsd">
+	<header>
+		<meta name="generator" content="MODX file generated with PP MODX Creator by tumba25 (online version)"/>
+		<license><![CDATA[http://opensource.org/licenses/gpl-license.php GNU General Public License v2]]></license>
+		<title lang="en"><![CDATA[phpBB Rules MOD]]></title>
+		<description lang="en"><![CDATA[Adds a rule page to your board.]]></description>
+		<author-notes lang="en"><![CDATA[This is a development version, please do not risk the operation of your forum installing this modification, use it only for testing.]]></author-notes>
+		<author-group>
+			<author>
+				<realname><![CDATA[Marcus Vinicius]]></realname>
+				<username><![CDATA[_Vinny_]]></username>
+				<homepage><![CDATA[http://www.suportephpbb.com.br/]]></homepage>
+				<email><![CDATA[vinny@suportephpbb.com.br]]></email>
+			</author>
+		</author-group>
+		<mod-version>0.0.2</mod-version>
+		<installation>
+			<level>easy</level>
+			<time>300</time>
+			<target-version>3.0.9</target-version>
+		</installation>
+		<link-group>
+			<link type="parent" href="../install_mod.xml" lang="en">Main Install</link>
+		</link-group>
+	</header>
+	<action-group>
+		<copy>
+			<file from="root/styles/subsilver2/template/rules_body.html" to="styles/subsilver2/template/rules_body.html"/>
+		</copy>
+
+		<open src="styles/subsilver2/template/index_body.html">
+			<edit>
+				<find><![CDATA[<span class="gensmall"><!-- IF not S_IS_BOT --><a href="{U_DELETE_COOKIES}">{L_DELETE_COOKIES}</a><!-- ENDIF --><!-- IF not S_IS_BOT and U_TEAM --> | <!-- ENDIF --><!-- IF U_TEAM --><a href="{U_TEAM}">{L_THE_TEAM}</a><!-- ENDIF --></span><br />]]></find>
+				<inline-edit>
+					<inline-find><![CDATA[</span>]]></inline-find>
+					<inline-action type="before-add"><![CDATA[ | <a href="{U_RULES}">{L_RULES}</a>]]></inline-action>
+				</inline-edit>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/template/overall_header.html">
+			<edit>
+				<find><![CDATA[</head>]]></find>
+				<action type="before-add"><![CDATA[<!-- IF SCRIPT_NAME eq 'rules' -->
+<script type="text/javascript">
+// ]]>&lt;![CDATA[<![CDATA[
+/**
+* phpBB Rules MOD
+* Script Original Author: t_backoff (Tabitha Backoff)
+* phpBB.com Profile: http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=1003885
+* Original Page: http://www.phpbb.com/kb/article/how-to-create-a-rules-page-similar-to-phpbbcom
+**/
+
+window.onload = function()
+{
+    var pos = location.href.indexOf("#");
+    if(pos != -1)
+    {
+        highlight(location.href.slice(pos + 1));
+    }
+};
+var oldID = false;
+function highlight(id)
+{
+    if(oldID != false && oldID != id)
+    {
+        document.getElementById(oldID).className = '';
+    }
+    document.getElementById(id).className = 'activerule';
+    oldID = id;
+}
+// ]]>]]&gt;<![CDATA[
+</script>
+<!-- ENDIF -->]]></action>
+			</edit>
+		</open>
+		<open src="styles/subsilver2/theme/stylesheet.css">
+			<edit>
+				<find><![CDATA[.username-coloured {
+	font-weight: bold;
+}]]></find>
+				<action type="after-add"><![CDATA[/* phpBB Rules MOD
+
+CSS Original Author: t_backoff (Tabitha Backoff)
+phpBB.com Profile: http://www.phpbb.com/community/memberlist.php?mode=viewprofile&u=1003885
+Original Page: http://www.phpbb.com/kb/article/how-to-create-a-rules-page-similar-to-phpbbcom
+-------------------------------------------------*/
+
+.activerule
+{
+    background-color:#ECD5D8;
+    color: #BC2A4D;
+    font-weight: bold;
+}]]></action>
+			</edit>
+		</open>
+		<diy-instructions lang="en"><![CDATA[* Refresh the subsilver2 template]]></diy-instructions>
+	</action-group>
+</mod>

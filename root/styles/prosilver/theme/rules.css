@@ -11,31 +11,3 @@ Original Page: http://www.phpbb.com/kb/article/how-to-create-a-rules-page-simila
     color: #BC2A4D;
     font-weight: bold;
 }
-
-p.pages
-{
-    font-size: 10pt;
-}
-
-ol.headers
-{
-    margin-left: 19px;
-	list-style-type: circle;
-}
-
-ol.headers h3
-{
-    border-bottom: none;
-    color: #BC2A4D;
-    font-size: 9pt;
-    list-style-type: decimal;
-}
-
-ol.rulespage li
-{
-    line-height: 1.2em;
-    padding: 5px;
-    font-size: 10pt;
-    list-style-type: square;
-    margin-left: -10px;
-}
