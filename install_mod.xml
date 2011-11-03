@@ -74,13 +74,13 @@
 		</open>
 		<open src="language/en/acp/common.php">
 			<edit>
-				<find><![CDATA[));
-
-?>]]></find>
-				<action type="before-add"><![CDATA[	//phpBB Rules MOD
+				<find><![CDATA[?>]]></find>
+				<action type="before-add"><![CDATA[//phpBB Rules MOD
+$lang = array_merge($lang, array(
 	'ACP_RULES_OVERVIEW'	=> 'phpBB Rules MOD',
 	'ACP_RULES_CONFIG'		=> 'Rules Settings',
-	//phpBB Rules MOD]]></action>
+));
+//phpBB Rules MOD]]></action>
 			</edit>
 		</open>
 		<open src="styles/prosilver/template/overall_footer.html">
@@ -94,7 +94,7 @@
 		</open>
 		<open src="styles/prosilver/template/overall_header.html">
 			<edit>
-				<find><![CDATA[<script type="text/javascript" src="{T_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
+				<find><![CDATA[<script type="text/javascript" src="{T_SUPER_TEMPLATE_PATH}/forum_fn.js"></script>]]></find>
 				<action type="after-add"><![CDATA[<!-- IF SCRIPT_NAME eq 'rules' -->
 <script type="text/javascript">
 // ]]>&lt;![CDATA[<![CDATA[

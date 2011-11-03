@@ -56,7 +56,7 @@ $language_file = 'mods/rules';
 * The version numbering must otherwise be compatible with the version_compare function - http://php.net/manual/en/function.version-compare.php
 */
 $versions = array(
-	'0.0.1' => array(
+	'0.0.3' => array(
 		
 		// Now add the table
 		'table_add' => array(
