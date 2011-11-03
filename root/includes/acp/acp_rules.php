@@ -36,6 +36,10 @@ class acp_rules
 		// MOD language file gets added automatically
 		$user->add_lang(array('posting'));
 		
+		include ($phpbb_root_path . 'includes/functions_user.' . $phpEx);
+		include ($phpbb_root_path . 'includes/functions_display.' . $phpEx);
+		include ($phpbb_root_path . 'includes/message_parser.' . $phpEx);
+		
 		// Template and page title
 		$this->tpl_name = 'acp_rules';
 		$this->page_title = 'ACP_RULES_OVERVIEW';
@@ -51,6 +55,9 @@ class acp_rules
 		$id = request_var('id', 0);
 		$title = request_var('title', '', true);
 		$content = request_var('content', '');
+		
+		// Assigning custom bbcodes
+		display_custom_bbcodes();
 		
 		//Settings
 		$uid = $bitfield = $options = '';
@@ -70,10 +77,6 @@ class acp_rules
 		{
 			// Add new Adcode
 			case 'add':
-				if (!function_exists('display_custom_bbcodes'))
-				{
-					include($phpbb_root_path . 'includes/functions_display.' . $phpEx);
-				}
 			if ($title == '' || $content == '')
 			{
 				if ($title == '' && $content == '')
@@ -95,8 +98,6 @@ class acp_rules
 				$db->sql_query('INSERT INTO ' . RULES_TABLE .' ' . $db->sql_build_array('INSERT', $sql_ary));
 				trigger_error($user->lang['ACP_RULE_CREATED'] . adm_back_link($this->u_action));
 			}
-				// Assigning custom bbcodes
-				display_custom_bbcodes();
 			break;
 
 			// Edit Ad
